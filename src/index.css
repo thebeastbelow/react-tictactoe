@@ -7,6 +7,10 @@ ol, ul {
   padding-left: 30px;
 }
 
+button::-moz-focus-inner {
+  border: none;
+}
+
 .board-row:after {
   clear: both;
   content: "";

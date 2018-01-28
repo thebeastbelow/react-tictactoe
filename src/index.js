@@ -95,7 +95,9 @@ class Game extends React.Component {
 
   render() {
     const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const stepNumber = this.state.stepNumber;
+    const current = history[stepNumber];
+    const draw = isBoardFull(current.squares);
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -104,7 +106,9 @@ class Game extends React.Component {
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>
+            {stepNumber === move ? <strong>{desc}</strong> : desc}
+          </button>
         </li>
       );
     });
@@ -112,6 +116,8 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+    } else if (draw) {
+      status = 'Draw';
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -158,4 +164,8 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function isBoardFull(squares) {
+  return squares.reduce((accumulator, currentValue) => accumulator && currentValue);
 }
