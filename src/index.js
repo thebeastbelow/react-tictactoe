@@ -14,7 +14,9 @@ import './index.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button
+      className={"square " + (props.value === "X" ? "blue-fg" : "red-fg")}
+      onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -59,6 +61,7 @@ class Game extends React.Component {
     this.state = {
       history: [{
         squares: Array(9).fill(null),
+        lastMove: -1
       }],
       stepNumber: 0,
       xIsNext: true,
@@ -76,6 +79,7 @@ class Game extends React.Component {
     this.setState({
       history: history.concat([{
         squares: squares,
+        lastMove: i,
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
@@ -96,7 +100,7 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        'Go to move #' + move + ` (${step.lastMove % 3}, ${Math.floor(step.lastMove / 3)})`:
         'Go to game start';
       return (
         <li key={move}>
@@ -109,7 +113,7 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + this.state.xIsNext ? 'X' : 'O';
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
