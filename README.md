@@ -6,7 +6,7 @@ Improvement ideas from [Wrapping Up](https://reactjs.org/tutorial/tutorial.html#
 - [x] Bold the currently selected item in the move list.
 - [x] Rewrite Board to use two ~~loops~~ *maps* to make the squares instead of hardcoding them.
 - [x] Add a toggle button that lets you sort the moves in either ascending or descending order.
-- [ ] When someone wins, highlight the three squares that caused the win.
+- [x] When someone wins, highlight the three squares that caused the win.
 
 ---
 

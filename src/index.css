@@ -60,3 +60,7 @@ button::-moz-focus-inner {
 .red-fg {
   color: #f55;
 }
+
+.green-bg {
+  background-color: #afa;
+}
